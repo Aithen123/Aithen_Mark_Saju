@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aithen Mark Saju – Portfolio</title>
+  <meta name="description" content="Portfolio of Aithen Mark Saju, school student and video editor." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f2f5f9;
+      --surface: #ffffff;
+      --ink: #101a33;
+      --muted: #55627f;
+      --line: #d3dae6;
+      --accent: #2447d6;
+      --accent-soft: #dde5fb;
+      --on-accent: #ffffff;
+      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      --body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --radius: 14px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1424;
+        --surface: #161e33;
+        --ink: #e8ecf8;
+        --muted: #9aa6c4;
+        --line: #26304d;
+        --accent: #8fa8ff;
+        --accent-soft: #1f2a52;
+        --on-accent: #0e1424;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: clamp(3rem, 9vw, 7rem) 0 clamp(2rem, 5vw, 4rem); }
+    .hero h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(3rem, 12vw, 8.5rem);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+    }
+    .hero h1 span { display: block; overflow: hidden; }
+    .hero h1 span i {
+      display: block;
+      font-style: normal;
+      animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    .hero h1 span:nth-child(2) i { animation-delay: 0.12s; color: var(--accent); }
+    .hero h1 span:nth-child(3) i { animation-delay: 0.24s; }
+    @keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
+
+    .hero-top {
+      display: grid; grid-template-columns: 1fr auto;
+      grid-template-areas: "name photo"; gap: 1.5rem; align-items: start;
+    }
+    .hero-top h1 { grid-area: name; }
+    .portrait {
+      grid-area: photo;
+      width: clamp(104px, 20vw, 260px); aspect-ratio: 4 / 5;
+      object-fit: cover; object-position: 50% 20%;
+      border-radius: var(--radius); border: 2px solid var(--ink);
+      background: var(--accent-soft);
+    }
+    @media (max-width: 560px) {
+      .hero-top { grid-template-columns: 1fr; grid-template-areas: "photo" "name"; gap: 1.25rem; }
+      .portrait { justify-self: end; width: 112px; }
+    }
+
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 1.25rem 3rem;
+      justify-content: space-between; align-items: end;
+      margin-top: clamp(1.5rem, 4vw, 3rem);
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--ink);
+    }
+    .hero-meta p { margin: 0; max-width: 34rem; font-size: 1.2rem; }
+    .btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      display: inline-block; padding: 0.7rem 1.25rem; border-radius: 999px;
+      font-weight: 600; text-decoration: none; border: 2px solid var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn.primary { background: var(--ink); color: var(--bg); }
+    .btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+    .btn.ghost:hover { background: var(--accent-soft); }
+
+    /* ---------- Layout ---------- */
+    .layout { display: grid; grid-template-columns: 220px 1fr; gap: clamp(2rem, 6vw, 5rem); padding-bottom: 5rem; }
+    nav.side { position: sticky; top: 2rem; align-self: start; }
+    nav.side ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+    nav.side a {
+      display: block; padding: 0.45rem 0.9rem; border-radius: 10px;
+      text-decoration: none; color: var(--muted); font-weight: 500;
+      border-left: 3px solid transparent;
+    }
+    nav.side a:hover { color: var(--ink); }
+    nav.side a[aria-current="true"] { color: var(--ink); background: var(--accent-soft); border-left-color: var(--accent); }
+
+    section { padding: 0 0 clamp(2.5rem, 6vw, 4.5rem); }
+    section + section { padding-top: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
+    h2 {
+      margin: 0 0 1.5rem;
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.1; letter-spacing: -0.02em;
+    }
+    h3 { margin: 0; font-family: var(--display); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; }
+    p { margin: 0 0 1rem; max-width: 62ch; }
+    .muted { color: var(--muted); }
+
+    /* ---------- Experience timeline ---------- */
+    .timeline { list-style: none; margin: 0; padding: 0 0 0 1.75rem; position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 6px; top: 0.6rem; bottom: 0.6rem; width: 2px; background: var(--line); }
+    .timeline li { position: relative; margin-bottom: 2.25rem; }
+    .timeline li:last-child { margin-bottom: 0; }
+    .timeline li::before {
+      content: ""; position: absolute; left: -1.75rem; top: 0.55rem;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--accent);
+    }
+    .when { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .timeline ul { margin: 0.6rem 0 0; padding-left: 1.1rem; max-width: 62ch; }
+    .timeline ul li { margin: 0 0 0.35rem; }
+    .timeline ul li::before { display: none; }
+
+    /* ---------- Projects ---------- */
+    .projects { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .project {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .project video {
+      width: 100%; aspect-ratio: 9 / 16; max-height: 520px;
+      object-fit: contain; background: #000; border-radius: 10px;
+    }
+    .project p { margin: 0; font-size: 1rem; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; padding-top: 0.6rem; }
+    .tag { font-size: 0.85rem; padding: 0.15rem 0.65rem; border-radius: 999px; background: var(--accent-soft); }
+    .project a.link { font-weight: 600; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+    /* ---------- Skills ---------- */
+    .skills { display: grid; gap: 1.5rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .skills h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .skills ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skills li { padding: 0.2rem 0.75rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 0.95rem; }
+
+    /* ---------- Education ---------- */
+    .edu { display: grid; gap: 1.5rem; }
+    .edu div { padding-left: 1.1rem; border-left: 3px solid var(--accent); }
+
+    /* ---------- Contact ---------- */
+    .contact-big {
+      display: inline-block; font-family: var(--display); font-weight: 800;
+      font-size: clamp(1.5rem, 5vw, 2.8rem); letter-spacing: -0.02em;
+      text-decoration-thickness: 3px; text-underline-offset: 8px; word-break: break-word;
+    }
+    .contact-big:hover { color: var(--accent); }
+    .links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 1.5rem; }
+    .links a { font-weight: 600; }
+
+    footer { border-top: 1px solid var(--line); padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: 0.95rem; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 820px) {
+      .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+      nav.side {
+        position: sticky; top: 0; z-index: 10; margin-inline: -1.25rem; padding: 0.6rem 1.25rem;
+        background: color-mix(in srgb, var(--bg) 90%, transparent);
+        backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+        overflow-x: auto;
+      }
+      nav.side ul { display: flex; gap: 0.25rem; width: max-content; }
+      nav.side a { border-left: 0; border-bottom: 3px solid transparent; border-radius: 8px; padding: 0.35rem 0.8rem; white-space: nowrap; }
+      nav.side a[aria-current="true"] { border-bottom-color: var(--accent); }
+      html { scroll-padding-top: 4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero h1 span i { animation: none; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="wrap hero">
+    <div class="hero-top">
+      <img class="portrait" src="aithen.png" alt="Portrait of Aithen Mark Saju" width="260" height="325" />
+      <h1 aria-label="Aithen Mark Saju">
+        <span aria-hidden="true"><i>Aithen</i></span>
+        <span aria-hidden="true"><i>Mark</i></span>
+        <span aria-hidden="true"><i>Saju</i></span>
+      </h1>
+    </div>
+    <div class="hero-meta">
+      <p>I edit videos and love science. I study at St. Mary's Inter College, Etawah.</p>
+      <div class="btns">
+        <a class="btn primary" href="#editing">See my editing</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap layout">
+    <nav class="side" aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#editing">Editing</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="about">
+        <h2>About</h2>
+        <p>I'm Aithen, a school student at St. Mary's Inter College in Etawah. I love editing videos and turning raw clips into something people enjoy watching.</p>
+        <p class="muted">Science is my favourite subject. I like finding out how things work, and I want to bring that curiosity into my editing too.</p>
+      </section>
+
+      <section id="editing">
+        <h2>Editing</h2>
+        <div class="projects">
+          <article class="project">
+            <video controls playsinline preload="none" poster="edit1-poster.jpg" aria-label="Abel's Edit, a 34-second vertical video">
+              <source src="edit1.mp4" type="video/mp4" />
+            </video>
+            <h3>Abel's Edit</h3>
+            <p>A 34-second vertical edit with glitch effects, sharp sound timing, a title card and a studio outro.</p>
+            <div class="tags"><span class="tag">Glitch</span><span class="tag">Sound</span><span class="tag">Titles</span></div>
+          </article>
+          <article class="project">
+            <h3>Edit two</h3>
+            <p>Mention one thing you're proud of, like the music timing, colour or transitions.</p>
+            <div class="tags"><span class="tag">Software</span><span class="tag">Effects</span></div>
+            <a class="link" href="#">Watch</a>
+          </article>
+          <article class="project">
+            <h3>Edit three</h3>
+            <p>Keep it short and link to the video.</p>
+            <div class="tags"><span class="tag">Software</span><span class="tag">Sound</span></div>
+            <a class="link" href="#">Watch</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div>
+            <h3>Editing</h3>
+            <ul><li>Video cutting</li><li>Transitions</li><li>Colour</li><li>Sound</li></ul>
+          </div>
+          <div>
+            <h3>Software</h3>
+            <ul><li>Your editing app</li><li>Another app</li></ul>
+          </div>
+          <div>
+            <h3>Languages</h3>
+            <ul><li>English</li><li>Hindi</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <h2>Education</h2>
+        <div class="edu">
+          <div>
+            <h3>St. Mary's Inter College</h3>
+            <p class="muted" style="margin:0">Etawah · Class [your class]</p>
+          </div>
+          <div>
+            <h3>Favourite subject: Science</h3>
+            <p class="muted" style="margin:0">Add a project, award or topic you enjoyed.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Want to talk about editing or science? Send me a message.</p>
+        <a class="contact-big" href="mailto:you@example.com">you@example.com</a>
+        <div class="links">
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap">© <span id="year">2026</span> Aithen Mark Saju</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Highlight the nav link for the section currently in view
+    const links = [...document.querySelectorAll("nav.side a")];
+    const map = new Map(links.map(a => [a.getAttribute("href").slice(1), a]));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(a => a.removeAttribute("aria-current"));
+          map.get(entry.target.id)?.setAttribute("aria-current", "true");
+        }
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    document.querySelectorAll("main section").forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
